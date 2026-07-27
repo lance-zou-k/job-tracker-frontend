@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function ApplicationForm() {
+function ApplicationForm({ onSubmitSuccess }) {
     const [companyName, setCompanyName] = useState('')
     const [role, setRole] = useState('')
     const [status, setStatus] = useState('')
@@ -9,25 +9,27 @@ function ApplicationForm() {
     const [contactName, setContactName] = useState('')
 
     const handleSubmit = async() => {
-    const response = await fetch("http://localhost:8080/applications", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ 
-      companyName: companyName,
-      role: role,
-      status: status,
-      dateApplied: dateApplied,
-      notes: notes,
-      contactName: contactName
-    }),
-})
-const data = await response.json()
-console.log(data)
-}
+      const response = await fetch("http://localhost:8080/applications", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ 
+        companyName: companyName,
+        role: role,
+        status: status,
+        dateApplied: dateApplied,
+        notes: notes,
+        contactName: contactName
+        }),
+      })
+      const data = await response.json()
+      console.log(data)
+      onSubmitSuccess()
+    }
   return (
     <div>
+
       <label>Company Name</label>
       <input
       value = {companyName}

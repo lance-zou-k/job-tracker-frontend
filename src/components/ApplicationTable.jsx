@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react"
-function ApplicationTable() {
+function ApplicationTable({ refreshKey }) {
   const [applications, setApplications] = useState([])
   useEffect(() => {
     fetch("http://localhost:8080/applications")
         .then(response => response.json())
         .then(data => setApplications(data))
-  }, [])
+  }, [refreshKey])
   return (
     <div>
       <h2>Applications List</h2>
