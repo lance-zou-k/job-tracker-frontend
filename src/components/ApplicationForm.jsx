@@ -26,6 +26,12 @@ function ApplicationForm({ onSubmitSuccess }) {
       const data = await response.json()
       console.log(data)
       onSubmitSuccess()
+      setCompanyName('')
+      setRole('')
+      setStatus('')
+      setDateApplied('')
+      setNotes('')
+      setContactName('')
     }
   return (
     <div>
