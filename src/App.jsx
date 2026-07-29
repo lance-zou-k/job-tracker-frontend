@@ -9,7 +9,7 @@ function App() {
     <div>
       <h1>Job Tracker</h1>
       <ApplicationForm onSubmitSuccess={triggerRefresh} />
-      <ApplicationTable refreshKey={refreshKey} />
+      <ApplicationTable refreshKey={refreshKey} triggerRefresh={triggerRefresh}/>
     </div>
   )
 }
