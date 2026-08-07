@@ -13,30 +13,31 @@ function ApplicationTable({ refreshKey , triggerRefresh}) {
       triggerRefresh()
   }
   return (
-    <div>
-      <h2>Applications List</h2>
-      <table>
+    <div className="bg-white rounded-lg shadow p-6">
+      <h2 className="text-xl font-bold text-gray-800 mb-4">Applications List</h2>
+      <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th>Company</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Date Applied</th>
-            <th>Notes</th>
-            <th>Contact</th>
+            <th className="text-left text-sm font-medium text-gray-600 pb-3 border-b">Company</th>
+            <th className="text-left text-sm font-medium text-gray-600 pb-3 border-b">Role</th>
+            <th className="text-left text-sm font-medium text-gray-600 pb-3 border-b">Status</th>
+            <th className="text-left text-sm font-medium text-gray-600 pb-3 border-b">Date Applied</th>
+            <th className="text-left text-sm font-medium text-gray-600 pb-3 border-b">Notes</th>
+            <th className="text-left text-sm font-medium text-gray-600 pb-3 border-b">Contact</th>
           </tr>
         </thead>
         <tbody>
           {applications.map(app => (
             <tr key={app.id}>
-              <td>{app.companyName}</td>
-              <td>{app.role}</td>
-              <td>{app.status}</td>
-              <td>{app.dateApplied}</td>
-              <td>{app.notes}</td>
-              <td>{app.contactName}</td>
-              <td>
-                  <button onClick={() => handleDelete(app.id)}>Delete</button>
+              <td className="py-3 text-sm text-gray-800 border-b">{app.companyName}</td>
+              <td className="py-3 text-sm text-gray-800 border-b">{app.role}</td>
+              <td className="py-3 text-sm text-gray-800 border-b">{app.status}</td>
+              <td className="py-3 text-sm text-gray-800 border-b">{app.dateApplied}</td>
+              <td className="py-3 text-sm text-gray-800 border-b">{app.notes}</td>
+              <td className="py-3 text-sm text-gray-800 border-b">{app.contactName}</td>
+              <td className="py-3 text-sm text-gray-800 border-b">
+                  <button className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600"
+                  onClick={() => handleDelete(app.id)}>Delete</button>
               </td>
             </tr>
           ))}
