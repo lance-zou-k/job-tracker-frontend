@@ -9,9 +9,11 @@ function ApplicationForm({ onSubmitSuccess }) {
     const [contactName, setContactName] = useState('')
 
     const handleSubmit = async() => {
+      const token = localStorage.getItem('token')
       const response = await fetch("http://localhost:8080/applications", {
       method: "POST",
       headers: {
+          "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
       },
       body: JSON.stringify({ 

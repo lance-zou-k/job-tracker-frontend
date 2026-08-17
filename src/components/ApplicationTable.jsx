@@ -2,13 +2,22 @@ import { useState, useEffect } from "react"
 function ApplicationTable({ refreshKey , triggerRefresh}) {
   const [applications, setApplications] = useState([])
   useEffect(() => {
-    fetch("http://localhost:8080/applications")
+    const token = localStorage.getItem('token')
+    fetch("http://localhost:8080/applications", {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
         .then(response => response.json())
         .then(data => setApplications(data))
   }, [refreshKey])
   const handleDelete = async(id) => {
+      const token = localStorage.getItem('token')
       await fetch(`http://localhost:8080/applications/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
       })
       triggerRefresh()
   }
