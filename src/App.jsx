@@ -11,9 +11,15 @@ return (
     <div className="max-w-5xl mx-auto p-8">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Job Tracker</h1>
       {isLoggedIn ? (
+        
         <>
           <ApplicationForm onSubmitSuccess={triggerRefresh} />
-          <ApplicationTable refreshKey={refreshKey} triggerRefresh={triggerRefresh}/>        
+          <ApplicationTable refreshKey={refreshKey} triggerRefresh={triggerRefresh}/> 
+          <button  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            onClick={() => {
+            localStorage.clear()
+            setIsLoggedIn(false)
+          }}>Logout</button>       
         </>
       ) : (
         <Login onLoginSuccess={() => setIsLoggedIn(true)} />
