@@ -3,9 +3,10 @@ import { useState } from "react"
 function Login({onLoginSuccess}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [isRegistering, setIsRegistering] = useState(false)
 
-    const handleLogin = async() => {
-        const response = await fetch("http://localhost:8080/auth/login", {
+    const handleRegister = async() =>{
+        const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers:{
             "Content-Type": "application/json"
@@ -17,8 +18,30 @@ function Login({onLoginSuccess}) {
         })
         const token = await response.text()
         console.log(token)
-        localStorage.setItem('token', token)
-        onLoginSuccess()
+        alert('Registered successfully! Please log in.')
+        setIsRegistering(false)
+    }
+
+    const handleLogin = async() => {
+        const response = await fetch("http://localhost:8080/auth/login", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ 
+                email: email,
+                password: password
+            }),
+        })
+        if(response.ok){
+            const token = await response.text()
+            console.log(token)
+            localStorage.setItem('token', token)
+            onLoginSuccess()
+        } else {
+            alert('Invalid email or password.')
+        }
+
     }
     return(
         <div className="bg-white rounded-lg shadow p-6 mb-8">
@@ -35,8 +58,12 @@ function Login({onLoginSuccess}) {
             onChange = {(e) => setPassword(e.target.value)}
             /> 
 
-            <button  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            onClick={handleLogin}>Login</button>
+            <button onClick={isRegistering ? handleRegister : handleLogin}>
+                {isRegistering ? 'Register' : 'Login'}
+            </button>
+            <p onClick={() => setIsRegistering(!isRegistering)}>
+                {isRegistering ? 'Already have an account? Login' : 'No account? Register'}
+            </p>
         </div>
     )
 }

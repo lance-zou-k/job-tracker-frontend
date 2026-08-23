@@ -3,7 +3,7 @@ import { useState } from "react"
 function ApplicationForm({ onSubmitSuccess }) {
     const [companyName, setCompanyName] = useState('')
     const [role, setRole] = useState('')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('APPLIED')
     const [dateApplied, setDateApplied] = useState('')
     const [notes, setNotes] = useState('')
     const [contactName, setContactName] = useState('')
