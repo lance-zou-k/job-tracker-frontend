@@ -3,7 +3,7 @@ function ApplicationTable({ applications, triggerRefresh}) {
 
   const handleDelete = async(id) => {
       const token = localStorage.getItem('token')
-      await fetch(`http://localhost:8080/applications/${id}`, {
+      await fetch(`https://job-tracker-production-87db.up.railway.app/applications/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`

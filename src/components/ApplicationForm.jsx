@@ -10,7 +10,7 @@ function ApplicationForm({ onSubmitSuccess }) {
 
     const handleSubmit = async() => {
       const token = localStorage.getItem('token')
-      const response = await fetch("http://localhost:8080/applications", {
+      const response = await fetch("https://job-tracker-production-87db.up.railway.app/applications", {
       method: "POST",
       headers: {
           "Authorization": `Bearer ${token}`,
