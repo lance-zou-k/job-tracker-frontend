@@ -10,6 +10,7 @@ function ApplicationForm({ onSubmitSuccess }) {
 
     const handleSubmit = async() => {
       const token = localStorage.getItem('token')
+      console.log('Submitting status:', status)
       const response = await fetch("https://job-tracker-production-87db.up.railway.app/applications", {
       method: "POST",
       headers: {
@@ -30,7 +31,7 @@ function ApplicationForm({ onSubmitSuccess }) {
       onSubmitSuccess()
       setCompanyName('')
       setRole('')
-      setStatus('')
+      setStatus('APPLIED')
       setDateApplied('')
       setNotes('')
       setContactName('')
